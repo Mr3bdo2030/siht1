@@ -42,13 +42,13 @@ client.on('message', message => {
     if (command === `${prefix}help-br`) {
 			let embed = new Discord.RichEmbed()
                 .setColor('RANDOM')
-                .addField('     **=-=-:: [ Narox ] ::-=-=** ' ,'╔[❖═════════════════════❖]╗')
+                .addField('     **=-=-:: [ SHIFT ] ::-=-=** ' ,'╔[❖═════════════════════❖]╗')
 				.addField(`**${prefix}bc1 | رسالة جماعية لجميع الاعضاء**'` ,'**=-=-=-=-=-=-=-=-=-=-=**')
 				.addField(`**${prefix}bc2 | رسالة جماعية للاونلاين فقط**` ,'**=-=-=-=-=-=-=-=-=-=-=**')
 				.addField(`**${prefix}bc3 | رسالة جماعية للوفلاين فقط**` ,'**=-=-=-=-=-=-=-=-=-=-=**')
 				.addField(`**${prefix}bcrole | رسالة جماعية لرتبة معينه**` ,'**=-=-=-=-=-=-=-=-=-=-=**')
                 .addField('=-=- [ شكرا على استعمال البوت ] -=-= ' ,'╚[❖═════════════════════❖]╝')
-                .setFooter(`By Abo khalil - Narox`)
+                .setFooter(`By ال شيخ - Shift`)
                 .setTimestamp()
 			
                 message.author.sendEmbed(embed)
