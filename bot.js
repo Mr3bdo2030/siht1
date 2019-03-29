@@ -39,7 +39,7 @@ client.on('message', message => {
     let command = messageArray[0];
     
     
-    if (command === `${prefix}help-br`) {
+    if (command === `${prefix}help`) {
 			let embed = new Discord.RichEmbed()
                 .setColor('RANDOM')
                 .addField('     **=-=-:: [ SHIFT ] ::-=-=** ' ,'╔[❖═════════════════════❖]╗')
