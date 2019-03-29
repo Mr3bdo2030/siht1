@@ -1,128 +1,144 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-var prefix = "$"
-var adminprefix = '$'
+const prefix = "$"; // ضع البريفكس الخاص بك هنا
 
 
-//bc
 
-client.on("message", message => {
-    if (message.content.startsWith("$bc")) {
-                 if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+console.log('         [Wait please .. ]       ')
+console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+client.on('ready', () => {
+	console.log('')
+	console.log('')
+	console.log('')
+	console.log('')
+	console.log('')
+	console.log('')
+	console.log('')
+	console.log('')
+  console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+  console.log(`Logged in as [ ${client.user.tag}! ]`);
+  console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+  console.log('[           BOT IS ONLINE         ]')
+  console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+  console.log('[        info         ]')
+  console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+  console.log(`servers! [ " ${client.guilds.size} " ]`);
+  console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+  console.log(`Users! [ " ${client.users.size} " ]`);
+  console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+  console.log(`channels! [ " ${client.channels.size} " ]`);
+  console.log('=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=')
+  client.user.setGame(`${prefix}help-br`)
+});
+
+
+client.on('message', message => {
+    let messageArray = message.content.split(" ");
+    
+    let command = messageArray[0];
+    
+    
+    if (command === `${prefix}help-br`) {
+			let embed = new Discord.RichEmbed()
+                .setColor('RANDOM')
+                .addField('     **=-=-:: [ Narox ] ::-=-=** ' ,'╔[❖═════════════════════❖]╗')
+				.addField(`**${prefix}bc1 | رسالة جماعية لجميع الاعضاء**'` ,'**=-=-=-=-=-=-=-=-=-=-=**')
+				.addField(`**${prefix}bc2 | رسالة جماعية للاونلاين فقط**` ,'**=-=-=-=-=-=-=-=-=-=-=**')
+				.addField(`**${prefix}bc3 | رسالة جماعية للوفلاين فقط**` ,'**=-=-=-=-=-=-=-=-=-=-=**')
+				.addField(`**${prefix}bcrole | رسالة جماعية لرتبة معينه**` ,'**=-=-=-=-=-=-=-=-=-=-=**')
+                .addField('=-=- [ شكرا على استعمال البوت ] -=-= ' ,'╚[❖═════════════════════❖]╝')
+                .setFooter(`By Abo khalil - Narox`)
+                .setTimestamp()
+			
+                message.author.sendEmbed(embed)
+	}
+});
+
+
+ client.on("message", message => {//bc1
+
+            if (message.content.startsWith(prefix + "bc1")) {
+                         if (!message.member.hasPermission("ADMINISTRATOR"))  return;
   let args = message.content.split(" ").slice(1);
-  var argresult = args.join(' ');
+  var argresult = args.join(' '); 
   message.guild.members.filter(m => m.presence.status !== 'all').forEach(m => {
-  m.send(`${argresult}\n ${m}`);
-  })
-  message.channel.send(`\`${message.guild.members.filter( m => m.presence.status !== 'all').size}\`:mailbox:  عدد المستلمين `);
-  message.delete();
-  };
-  });
-
-
-//bc online
-
-
-  var prefix = "$";
-
-  client.on("message", message => {
-  
-              if (message.content.startsWith(prefix + "bc")) {
-                           if (!message.member.hasPermission("ADMINISTRATOR"))  return;
-    let args = message.content.split(" ").slice(1);
-    var argresult = args.join(' '); 
-    message.guild.members.filter(m => m.presence.status !== 'offline').forEach(m => {
-   m.send(`${argresult}\n ${m}`);
-  })
-   message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'online').size}\` :mailbox:  عدد المستلمين `); 
-   message.delete(); 
-  };     
-  });
-
-client.on('message', message => {
-    var  user = message.mentions.users.first() || message.author;
-if (message.content.startsWith("$avatar")) {
-message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
-}
-});
-
-client.on('ready',  () => {
-    console.log('تم تشغيل :Broadcast  ');
-    console.log(`Logged in as * [ " ${client.user.username} " ] servers! [ " ${client.guilds.size} " ]`);
-    console.log(`Logged in as * [ " ${client.user.username} " ] Users! [ " ${client.users.size} " ]`);
-    console.log(`Logged in as * [ " ${client.user.username} " ] channels! [ " ${client.channels.size} " ]`);
-  });
-
-  client.on('message', message => {
-    if(!message.channel.guild) return;
-let args = message.content.split(' ').slice(1).join(' ');
-if (message.content.startsWith('$adminbc')){
-if(!message.author.id === '476185102922285066') return;
-message.channel.sendMessage('جار ارسال الرسالة |:white_check_mark:')
-client.users.forEach(m =>{
-m.sendMessage(args)
+ m.send(`${argresult}\n ${m}\n By Server : ${message.guild.name}`);
 })
-}
-});
-
-  client.on('message', msg => {
-    if(msg.content === '$help')
-    msg.reply('Check Your DM :white_check_mark:')
-  });
-  
-  
-  client.on("message", message => {
-    if (message.content === "$help") {
-     const embed = new Discord.RichEmbed() 
-         .setColor("#00FF00")
-         .setThumbnail(message.author.avatarURL)
-         .setDescription(`**Help|هيلب
-
-       $bc | لأرسال برود كاست للكل
-
-       $bc  |  لأرسال برود كاست للأونلاين
-
-       $adminbc | برودكاست عادي
-
-       ** `)
-   message.author.sendEmbed(embed)
-   
-   }
-   });
-
-const developers = ["424134723716120578","id"]
-client.on('message', message => {
-    var argresult = message.content.split(` `).slice(1).join(' ');
-      if (!developers.includes(message.author.id)) return;
-      
-  if (message.content.startsWith(adminprefix + 'setg')) {
-    client.user.setGame(argresult);
-      message.channel.send(`**✅   ${argresult}**`)
-  } else 
-     if (message.content === (adminprefix + "leave")) {
-    message.guild.leave();        
-  } else  
-  if (message.content.startsWith(adminprefix + 'setw')) {
-  client.user.setActivity(argresult, {type:'WATCHING'});
-      message.channel.send(`**✅   ${argresult}**`)
-  } else 
-  if (message.content.startsWith(adminprefix + 'setl')) {
-  client.user.setActivity(argresult , {type:'LISTENING'});
-      message.channel.send(`**✅   ${argresult}**`)
-  } else 
-  if (message.content.startsWith(adminprefix + 'sets')) {
-    client.user.setGame(argresult, "https://www.twitch.tv/dream");
-      message.channel.send(`**✅**`)
-  }
-  if (message.content.startsWith(adminprefix + 'setname')) {
-  client.user.setUsername(argresult).then
-      message.channel.send(`Changing The Name To ..**${argresult}** `)
-} else
-if (message.content.startsWith(adminprefix + 'setava')) {
-  client.user.setAvatar(argresult);
-    message.channel.send(`Changing The Avatar To :**${argresult}** `);
-}
+ message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'all').size}\` : عدد الاعضاء المستلمين`); 
+ message.delete(); 
+};     
 });
 
 
-client.login(process.env.BOT_TOKEN);
+client.on("message", message => {//bc2
+
+            if (message.content.startsWith(prefix + "bc2")) {
+                         if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' '); 
+  message.guild.members.filter(m => m.presence.status !== 'online').forEach(m => {
+ m.send(`${argresult}\n ${m}\n By Server : ${message.guild.name}`);
+})
+ message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'online').size}\` : عدد الاعضاء المستلمين`); 
+ message.delete(); 
+};     
+});
+
+client.on("message", message => {//bc3
+
+            if (message.content.startsWith(prefix + "bc3")) {
+                         if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' '); 
+  message.guild.members.filter(m => m.presence.status !== 'offline').forEach(m => {
+ m.send(`${argresult}\n ${m} \n By Server : ${message.guild.name}`);
+})
+ message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'offline').size}\` : عدد الاعضاء المستلمين`); 
+ message.delete(); 
+};     
+});
+
+
+
+client.on('message' , message => {//bcrole
+  if(message.author.bot) return;
+  if(message.content.startsWith(prefix + "bcrole")) {
+    let args = message.content.split(" ").slice(1);
+
+    if(!args[0]) {
+      message.channel.send("قم بمنشنة الرتبة | *bcrole @everyone رساله");
+        return;
+    }
+    if(!args[1]) {
+      message.channel.send("قم بمنشنة الرتبة | *bcrole @everyone رساله");
+        return;
+    }
+
+      if(args[0] == "@everyone") {
+        message.channel.send(`لقد تم ارسال هذه الرسالة الى ${message.guild.memberCount} اعضاء`);
+        message.guild.members.forEach(mi => {
+          mi.send(
+          "الرسالة :" + "\n" +
+         "**" + `${args[1]}` + "**"
+          );
+        });
+        return;
+      }
+          var role = message.mentions.roles.first();
+            if(!role) {
+              message.reply("لا توجد رتبة بهذا الاسم");
+                return;
+            }
+        message.guild.members.filter(m => m.roles.get(role.id)).forEach(sa => {
+        sa.send(
+          "الرسالة :" + "\n" +
+        "**" + `${args[1]}` + `By Server : ${message.guild.name}`
+          );
+        });
+      message.channel.send(`**لقد تم ارسال هذه الرسالة الى ${message.guild.members.filter(m => m.roles.get(role.id)).size} عظو**`);
+    }
+});
+
+
+client.login(process.env.BOT_TOKEN)
